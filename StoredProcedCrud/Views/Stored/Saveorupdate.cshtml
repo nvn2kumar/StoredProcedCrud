@@ -1,0 +1,70 @@
+﻿@model StoredProcedCrud.Models.Vendor
+@{
+    if (Model==null)
+    {
+        ViewData["Title"] = "Save Vendor";
+
+    }
+    else
+    {
+        ViewData["Title"] = "Update Vendor";
+    }
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card-header">
+                @if (Model != null)
+                {
+                    <h1 class="text-info text-center">Update Vendor</h1>
+                }
+                else
+                {
+                    <h1 class="text-info text-center">Add Vendor</h1>
+                }
+
+            </div>
+            <div class="card-body">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <form method="post" asp-action="Saveorupdate">
+
+                    <div class="form-group">
+                        <label class="label" asp-for="Name"></label>
+                        <input type="text" class="form-control" placeholder="Enter name" asp-for="Name" />
+                        @if (Model != null)
+                        {
+                            <input type="hidden" asp-for="Id" />
+                        }
+
+                    </div>
+                    <div class="form-group">
+                        <label class="label" asp-for="Gender"></label><br />
+                        <input type="radio" asp-for="Gender" value="Male" />Male
+                        <input type="radio" asp-for="Gender" value="Female" />Female
+                        <input type="radio" asp-for="Gender" value="Other" />Other
+                    </div>
+                    <div class="form-group">
+                        <label class="label" asp-for="City"></label>
+                        <input type="text" class="form-control" placeholder="Enter city" asp-for="City" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label" asp-for="Pincode"></label>
+                        <input type="number" class="form-control" placeholder="Enter pincode" asp-for="Pincode" />
+                    </div>
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-sm btn-primary float-right" value="@ViewData["Title"]" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
